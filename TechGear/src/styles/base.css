@@ -1,0 +1,183 @@
+/* TechGear — reset, layout primitives, vertical rhythm. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body.tg {
+  margin: 0;
+  background-color: var(--tg-bg);
+  color: var(--tg-text);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.tg img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.tg h1,
+.tg h2,
+.tg h3,
+.tg h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.tg p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.tg ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tg a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.tg button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.tg :focus-visible {
+  outline: 2px solid var(--tg-accent-soft);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+/* Layout ------------------------------------------------------------ */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+}
+
+.section--tight {
+  padding-block: calc(var(--section-y) * 0.6);
+}
+
+/* For a section that sits directly under the fixed site header (no hero
+   above it to provide clearance), so content isn't hidden underneath it. */
+.section--below-header {
+  padding-top: calc(76px + var(--section-y));
+}
+
+.section-head {
+  display: grid;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 860px) {
+  .section-head--split {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--tg-accent-soft);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--tg-accent));
+}
+
+.section-title {
+  font-size: var(--step-3);
+}
+
+.section-lead {
+  max-width: 52ch;
+  color: var(--tg-text-soft);
+}
+
+.text-accent {
+  color: var(--tg-accent-soft);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Reveal animation base --------------------------------------------- */
+
+.tg [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  will-change: transform, opacity;
+}
+
+.tg.is-static [data-reveal],
+.tg [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tg [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .tg *,
+  .tg *::before,
+  .tg *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
