@@ -8,7 +8,13 @@ export type User = {
   phone: string | null;
   role: "customer" | "admin";
   isActive: number;
+  emailVerifiedAt: string | null;
   createdAt: string;
+};
+
+export type SignUpResponse = {
+  verificationRequired: true;
+  email: string;
 };
 
 export const getCurrentUser = createServerFn({ method: "GET" }).handler(
@@ -36,9 +42,23 @@ export const serverSignUp = createServerFn({ method: "POST" })
       phone: z.string().optional(),
     }),
   )
-  .handler(async ({ data }): Promise<User> => {
+  .handler(async ({ data }): Promise<SignUpResponse> => {
     const { signUp } = await import("@/server/auth");
-    return signUp(data.name, data.email, data.password, data.phone);
+    return await signUp(data.name, data.email, data.password, data.phone);
+  });
+
+export const serverVerifyEmail = createServerFn({ method: "POST" })
+  .inputValidator(z.object({ email: z.string().email(), code: z.string() }))
+  .handler(async ({ data }): Promise<User> => {
+    const { verifyEmail } = await import("@/server/auth");
+    return verifyEmail(data.email, data.code);
+  });
+
+export const serverResendVerification = createServerFn({ method: "POST" })
+  .inputValidator(z.object({ email: z.string().email() }))
+  .handler(async ({ data }) => {
+    const { resendVerification } = await import("@/server/auth");
+    return await resendVerification(data.email);
   });
 
 export const serverUpdateProfile = createServerFn({ method: "POST" })

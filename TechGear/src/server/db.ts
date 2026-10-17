@@ -28,6 +28,7 @@ function migrate() {
       password_hash TEXT,
       role TEXT NOT NULL DEFAULT 'customer' CHECK (role IN ('customer', 'admin')),
       is_active INTEGER NOT NULL DEFAULT 1,
+      email_verified_at TEXT,
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL
     );
@@ -199,6 +200,28 @@ function migrate() {
     CREATE INDEX IF NOT EXISTS idx_sell_requests_status ON sell_requests(status);
   `);
 
+  const userColumns = database
+    .prepare("PRAGMA table_info(users)")
+    .all() as Array<Record<string, unknown>>;
+  if (!userColumns.some((column) => column["name"] === "email_verified_at")) {
+    database.exec("ALTER TABLE users ADD COLUMN email_verified_at TEXT");
+  }
+
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS email_verification_tokens (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL,
+      code_hash TEXT NOT NULL,
+      attempts INTEGER NOT NULL DEFAULT 0,
+      expires_at TEXT NOT NULL,
+      created_at TEXT NOT NULL,
+      consumed_at TEXT,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    );
+    CREATE INDEX IF NOT EXISTS idx_email_verification_user ON email_verification_tokens(user_id, created_at);
+    CREATE INDEX IF NOT EXISTS idx_email_verification_expiry ON email_verification_tokens(expires_at);
+  `);
+
   const migration = database
     .prepare("SELECT version FROM schema_migrations WHERE version = 1")
     .get();
@@ -206,6 +229,17 @@ function migrate() {
     database
       .prepare(
         "INSERT INTO schema_migrations (version, applied_at) VALUES (1, ?)",
+      )
+      .run(new Date().toISOString());
+  }
+
+  const verificationMigration = database
+    .prepare("SELECT version FROM schema_migrations WHERE version = 2")
+    .get();
+  if (!verificationMigration) {
+    database
+      .prepare(
+        "INSERT INTO schema_migrations (version, applied_at) VALUES (2, ?)",
       )
       .run(new Date().toISOString());
   }

@@ -10,10 +10,12 @@ import {
 import {
   getCurrentUser,
   serverChangePassword,
+  serverResendVerification,
   serverSignIn,
   serverSignOut,
   serverSignUp,
   serverUpdateProfile,
+  serverVerifyEmail,
 } from "@/lib/serverAuth";
 
 export type AuthUser = {
@@ -23,7 +25,10 @@ export type AuthUser = {
   phone?: string | null;
   isAdmin: boolean;
 };
-export type AuthResult = { ok: true } | { ok: false; error: string };
+export type AuthResult =
+  | { ok: true }
+  | { ok: false; error: string }
+  | { ok: false; verificationRequired: true; email: string };
 type AuthContextValue = {
   user: AuthUser | null;
   ready: boolean;
@@ -33,6 +38,8 @@ type AuthContextValue = {
     password: string,
   ) => Promise<AuthResult>;
   signIn: (email: string, password: string) => Promise<AuthResult>;
+  verifyEmail: (email: string, code: string) => Promise<AuthResult>;
+  resendVerification: (email: string) => Promise<AuthResult>;
   signOut: () => Promise<void>;
   updateProfile: (name: string) => Promise<AuthResult>;
   changePassword: (
@@ -105,11 +112,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       password: string,
     ): Promise<AuthResult> => {
       try {
-        const serverUser = await serverSignUp({
+        const response = await serverSignUp({
           data: { name, email, password },
         });
-        setUser(toAuthUser(serverUser));
-        return { ok: true };
+        return {
+          ok: false,
+          verificationRequired: true,
+          email: response.email,
+        };
       } catch (error) {
         return {
           ok: false,
@@ -117,6 +127,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             error,
             "Unable to create your account right now.",
           ),
+        };
+      }
+    },
+    [],
+  );
+
+  const verifyEmail = useCallback(
+    async (email: string, code: string): Promise<AuthResult> => {
+      try {
+        const serverUser = await serverVerifyEmail({ data: { email, code } });
+        setUser(toAuthUser(serverUser));
+        return { ok: true };
+      } catch (error) {
+        return {
+          ok: false,
+          error: errorMessage(error, "Unable to verify this code."),
+        };
+      }
+    },
+    [],
+  );
+
+  const resendVerification = useCallback(
+    async (email: string): Promise<AuthResult> => {
+      try {
+        await serverResendVerification({ data: { email } });
+        return { ok: true };
+      } catch (error) {
+        return {
+          ok: false,
+          error: errorMessage(error, "Unable to send another code."),
         };
       }
     },
@@ -172,11 +213,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       ready,
       signUp,
       signIn,
+      verifyEmail,
+      resendVerification,
       signOut,
       updateProfile,
       changePassword,
     }),
-    [user, ready, signUp, signIn, signOut, updateProfile, changePassword],
+    [
+      user,
+      ready,
+      signUp,
+      signIn,
+      verifyEmail,
+      resendVerification,
+      signOut,
+      updateProfile,
+      changePassword,
+    ],
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
