@@ -8,28 +8,30 @@ TechGear is an e-commerce platform for discovering and purchasing new and certif
 
 ## Team
 
-<p align="center">
-  <a href="https://github.com/RZBv2"><img src="https://github.com/RZBv2.png?size=180" width="120" alt="Md. Razab Ali GitHub profile" /></a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<fieldset align="center">
-  <legend align="center"><strong align="center"><a href="https://github.com/RZBv2">Md. Razab Ali</a></strong></legend>
-  Backend development, security, </br>
-  SMTP-based verification, and bug fixing.
-</fieldset>
-</p>
-
-
-<p align="center">
-  <a href="https://github.com/zerotwo5"><img src="https://github.com/zerotwo5.png?size=180" width="120" alt="Md. Tanvir Rahman Pranto GitHub profile" /></a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<fieldset align="center">
-  <legend align="center"><strong align="center"><a href="https://github.com/zerotwo5">Md. Tanvir Rahman Pranto</a> </strong></legend>
-  Frontend development,</br>
-  UX/UI design, testing, and bug fixing.
-</fieldset>
-</p>
-
-
+<table align="center">
+  <tr>
+    <td align="center" width="320">
+      <a href="https://github.com/RZBv2">
+        <img src="https://github.com/RZBv2.png?size=180" width="120" alt="Md. Razab Ali GitHub profile" />
+      </a>
+      <br />
+      <strong><a href="https://github.com/RZBv2">Md. Razab Ali</a></strong>
+      <br />
+      Backend development, security,<br />
+      SMTP-based verification, and bug fixing.
+    </td>
+    <td align="center" width="320">
+      <a href="https://github.com/zerotwo5">
+        <img src="https://github.com/zerotwo5.png?size=180" width="120" alt="Md. Tanvir Rahman Pranto GitHub profile" />
+      </a>
+      <br />
+      <strong><a href="https://github.com/zerotwo5">Md. Tanvir Rahman Pranto</a></strong>
+      <br />
+      Frontend development,<br />
+      UX/UI design, testing, and bug fixing.
+    </td>
+  </tr>
+</table>
 
 ## Highlights
 
@@ -55,7 +57,7 @@ TechGear is an e-commerce platform for discovering and purchasing new and certif
 
 ### Prerequisites
 
-Install **Node.js 22 or newer** and npm. Node 22+ is required for the built-in `node:sqlite` adapter.
+Install **Node.js 22.13 or newer** and npm. The built-in `node:sqlite` adapter is required.
 
 ### Install and run
 
