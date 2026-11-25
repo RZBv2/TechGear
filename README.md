@@ -149,22 +149,6 @@ The application validates important checkout data on the server, including produ
 - 📊 [Project presentation](Documents/TechGear.pptx)
 - 🗄️ [SQLite setup and operational notes](TechGear/SQLITE_SETUP.md)
 
-## 🧭 Current Scope and Future Integrations
-
-**Included:** customer accounts, email verification, catalog browsing, checkout and order workflows, admin tools, and used-device buyback requests.
-
-**Not included yet:** live third-party payment processing, real courier API integration, SMS delivery, and automated tax or invoice integration. These may be added later.
-
-## 🌱 Suggested Improvements
-
-- Automated unit and end-to-end tests
-- CI checks for lint and build
-- Production deployment instructions
-- More screenshots or a short demo
-- Documented backup and restore procedures
-
-> Payment gateway and courier integrations should be added only with provider credentials, verified callbacks/webhooks, and appropriate security checks.
-
 ## 👥 Team
 
 <table align="center">
@@ -191,6 +175,24 @@ The application validates important checkout data on the server, including produ
     </td>
   </tr>
 </table>
+
+## 🧭 Current Scope and Future Integrations
+
+**Included:** customer accounts, email verification, catalog browsing, checkout and order workflows, admin tools, and used-device buyback requests.
+
+**Not included yet:** live third-party payment processing, real courier API integration, SMS delivery, and automated tax or invoice integration. These may be added later.
+
+## 🌱 Suggested Improvements
+
+- Automated unit and end-to-end tests
+- CI checks for lint and build
+- Production deployment instructions
+- More screenshots or a short demo
+- Documented backup and restore procedures
+
+> Payment gateway and courier integrations should be added only with provider credentials, verified callbacks/webhooks, and appropriate security checks.
+
+
 
 <div align="center">
 
