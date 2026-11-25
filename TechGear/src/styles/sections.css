@@ -1330,6 +1330,7 @@
 .auth-forms__form {
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
   gap: var(--space-sm);
 }
 
@@ -1578,6 +1579,8 @@
   color: var(--tg-text-dim);
 }
 .auth-forms {
+  display: flex;
+  flex-direction: column;
   max-width: none;
   padding: var(--space-lg);
   border: 1px solid var(--tg-line);
@@ -3165,4 +3168,146 @@
   .admin-status-grid {
     grid-template-columns: repeat(5, 96px);
   }
+}
+
+
+/* OTP verification input ----------------------------------------------- */
+
+.otp-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.otp-input {
+  width: 48px;
+  height: 56px;
+  padding: 0;
+  border: 1px solid var(--tg-line-strong);
+  border-radius: var(--radius-md);
+  outline: none;
+  background: var(--tg-bg);
+  color: var(--tg-text);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  transition:
+    border-color var(--dur) var(--ease-out),
+    background var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+}
+
+.otp-input:focus {
+  border-color: var(--tg-accent-soft);
+  background: var(--tg-bg-elevated);
+  box-shadow:
+    0 0 0 3px rgba(124, 92, 255, 0.16),
+    0 0 18px rgba(124, 92, 255, 0.22);
+  transform: translateY(-2px);
+  animation: otp-focus-pulse 1.4s ease-in-out infinite;
+}
+
+.otp-input:valid {
+  border-color: var(--tg-accent-soft);
+}
+
+@keyframes otp-focus-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 3px rgba(124, 92, 255, 0.14),
+      0 0 14px rgba(124, 92, 255, 0.18);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 4px rgba(124, 92, 255, 0.2),
+      0 0 22px rgba(124, 92, 255, 0.28);
+  }
+}
+
+@media (max-width: 520px) {
+  .otp-inputs {
+    gap: 7px;
+  }
+
+  .otp-input {
+    width: 42px;
+    height: 50px;
+  }
+}
+
+
+.auth-forms__verification-copy {
+  margin: -4px 0 2px;
+  color: var(--tg-text-dim);
+  font-size: var(--step--1);
+  line-height: 1.6;
+}
+
+.auth-forms__verification-copy strong {
+  color: var(--tg-text);
+  font-weight: 600;
+}
+
+
+/* Auth form layout refinements ----------------------------------------- */
+
+.auth-forms__session-note {
+  margin: 0 0 var(--space-2xs);
+  text-align: center;
+}
+
+.auth-forms__tabs {
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.auth-forms__tab {
+  min-width: 0;
+  padding-inline: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* Balanced spacing above the primary auth action ----------------------- */
+
+.auth-forms__session-note {
+  margin: auto 0 0;
+  text-align: center;
+}
+
+.auth-forms__form > .btn--primary {
+  margin-top: var(--space-2xs);
+}
+
+
+/* Auth card: keep session note + submit button at the bottom ----------- */
+
+.auth-shell .auth-forms {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-shell .auth-forms .auth-forms__form {
+  flex: 1 1 auto;
+}
+
+.auth-shell .auth-forms .auth-forms__form > .auth-forms__session-note {
+  margin-top: auto;
 }

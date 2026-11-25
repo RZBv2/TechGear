@@ -30,7 +30,9 @@ function migrate() {
       is_active INTEGER NOT NULL DEFAULT 1,
       email_verified_at TEXT,
       created_at TEXT NOT NULL,
-      updated_at TEXT NOT NULL
+      updated_at TEXT NOT NULL,
+      login_failed_attempts INTEGER NOT NULL DEFAULT 0,
+      login_locked_until TEXT
     );
 
     CREATE TABLE IF NOT EXISTS auth_sessions (
@@ -205,6 +207,14 @@ function migrate() {
     .all() as Array<Record<string, unknown>>;
   if (!userColumns.some((column) => column["name"] === "email_verified_at")) {
     database.exec("ALTER TABLE users ADD COLUMN email_verified_at TEXT");
+  }
+  if (!userColumns.some((column) => column["name"] === "login_failed_attempts")) {
+    database.exec(
+      "ALTER TABLE users ADD COLUMN login_failed_attempts INTEGER NOT NULL DEFAULT 0",
+    );
+  }
+  if (!userColumns.some((column) => column["name"] === "login_locked_until")) {
+    database.exec("ALTER TABLE users ADD COLUMN login_locked_until TEXT");
   }
 
   database.exec(`
