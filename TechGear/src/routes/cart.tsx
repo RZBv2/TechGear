@@ -458,11 +458,15 @@ function CheckoutForm({
               <label className="form-field">
                 <span>Phone number</span>
                 <input
-                  type="tel"
-                  value={newPhone}
-                  onChange={(event) => setNewPhone(event.target.value)}
-                  placeholder="01XXXXXXXXX"
-                  required
+                    type="tel"
+                    inputMode="numeric"
+                    maxLength={11}
+                    value={newPhone}
+                    onChange={(event) =>
+                      setNewPhone(event.target.value.replace(/\D/g, "").slice(0, 11))
+                    }
+                    placeholder="01XXXXXXXXX"
+                    required
                 />
               </label>
               <label className="form-field">

@@ -15,8 +15,10 @@ import { sendVerificationEmail } from "@/server/email";
 const SESSION_COOKIE = "techgear_session";
 const SESSION_DAYS = 7;
 const isProduction = process.env["NODE_ENV"] === "production";
-const VERIFICATION_WINDOW_MS = 15 * 60 * 1000;
-const VERIFICATION_RESEND_COOLDOWN_MS = 60 * 1000;
+const VERIFICATION_WINDOW_MS = 3 * 60 * 1000;
+const VERIFICATION_RESEND_COOLDOWN_MS = 15 * 1000;
+const LOGIN_MAX_FAILED_ATTEMPTS = 6;
+const LOGIN_LOCKOUT_MS = 2 * 60 * 1000;
 const VERIFICATION_SECRET =
   process.env["TECHGEAR_VERIFICATION_SECRET"] ||
   "techgear-development-verification-secret";
@@ -143,14 +145,51 @@ export function signIn(email: string, password: string) {
   const row = database
     .prepare("SELECT * FROM users WHERE email = ? AND is_active = 1")
     .get(normalized) as Record<string, unknown> | undefined;
+
+  if (!row) return null;
+
+  const lockedUntil = row["login_locked_until"]
+    ? new Date(String(row["login_locked_until"])).getTime()
+    : 0;
+  if (lockedUntil > Date.now()) {
+    const remainingMinutes = Math.ceil((lockedUntil - Date.now()) / 60000);
+    throw new Error(
+      `Too many failed attempts. Try again in ${remainingMinutes} minute${remainingMinutes === 1 ? "" : "s"}.`,
+    );
+  }
+
   if (
-    !row ||
     !verifyPassword(
       password,
       row["password_hash"] == null ? null : String(row["password_hash"]),
     )
-  )
+  ) {
+    const failedAttempts = Number(row["login_failed_attempts"] ?? 0) + 1;
+    if (failedAttempts >= LOGIN_MAX_FAILED_ATTEMPTS) {
+      const lockUntil = new Date(Date.now() + LOGIN_LOCKOUT_MS).toISOString();
+      database
+        .prepare(
+          "UPDATE users SET login_failed_attempts = 0, login_locked_until = ?, updated_at = ? WHERE id = ?",
+        )
+        .run(lockUntil, new Date().toISOString(), row["id"]);
+      throw new Error(
+        "Too many failed attempts. Try again in 2 minutes.",
+      );
+    }
+    database
+      .prepare(
+        "UPDATE users SET login_failed_attempts = ?, updated_at = ? WHERE id = ?",
+      )
+      .run(failedAttempts, new Date().toISOString(), row["id"]);
     return null;
+  }
+
+  database
+    .prepare(
+      "UPDATE users SET login_failed_attempts = 0, login_locked_until = NULL, updated_at = ? WHERE id = ?",
+    )
+    .run(new Date().toISOString(), row["id"]);
+
   if (row["role"] === "customer" && row["email_verified_at"] == null) {
     throw new Error("Please verify your email address before signing in.");
   }
