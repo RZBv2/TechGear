@@ -46,6 +46,33 @@ TechGear is an e-commerce platform for discovering and purchasing new and certif
 
 </div>
 
+## 👥 Team
+
+<table align="center">
+  <tr>
+    <td align="center" width="320">
+      <a href="https://github.com/RZBv2">
+        <img src="https://github.com/RZBv2.png?size=180" width="120" alt="Md. Razab Ali GitHub profile" />
+      </a>
+      <br />
+      <strong><a href="https://github.com/RZBv2">Md. Razab Ali</a></strong>
+      <br />
+      Backend development, security,<br />
+      SMTP-based verification, and bug fixing.
+    </td>
+    <td align="center" width="320">
+      <a href="https://github.com/zerotwo5">
+        <img src="https://github.com/zerotwo5.png?size=180" width="120" alt="Md. Tanvir Rahman Pranto GitHub profile" />
+      </a>
+      <br />
+      <strong><a href="https://github.com/zerotwo5">Md. Tanvir Rahman Pranto</a></strong>
+      <br />
+      Frontend development,<br />
+      UX/UI design, testing, and bug fixing.
+    </td>
+  </tr>
+</table>
+
 ## ✨ Highlights
 
 | | Feature | Description |
@@ -149,32 +176,7 @@ The application validates important checkout data on the server, including produ
 - 📊 [Project presentation](Documents/TechGear.pptx)
 - 🗄️ [SQLite setup and operational notes](TechGear/SQLITE_SETUP.md)
 
-## 👥 Team
 
-<table align="center">
-  <tr>
-    <td align="center" width="320">
-      <a href="https://github.com/RZBv2">
-        <img src="https://github.com/RZBv2.png?size=180" width="120" alt="Md. Razab Ali GitHub profile" />
-      </a>
-      <br />
-      <strong><a href="https://github.com/RZBv2">Md. Razab Ali</a></strong>
-      <br />
-      Backend development, security,<br />
-      SMTP-based verification, and bug fixing.
-    </td>
-    <td align="center" width="320">
-      <a href="https://github.com/zerotwo5">
-        <img src="https://github.com/zerotwo5.png?size=180" width="120" alt="Md. Tanvir Rahman Pranto GitHub profile" />
-      </a>
-      <br />
-      <strong><a href="https://github.com/zerotwo5">Md. Tanvir Rahman Pranto</a></strong>
-      <br />
-      Frontend development,<br />
-      UX/UI design, testing, and bug fixing.
-    </td>
-  </tr>
-</table>
 
 ## 🧭 Current Scope and Future Integrations
 
