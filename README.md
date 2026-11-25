@@ -39,7 +39,7 @@ TechGear is an e-commerce platform for discovering and purchasing new and certif
 <div align="center">
 
 <a href="https://postimg.cc/V5GPLZL3">
-  <img src="https://i.postimg.cc/KvFGfdXv/screencapture-1795622236672.png" alt="TechGear application preview" width="100%" />
+  <img src="home.png" alt="TechGear application preview" width="100%" />
 </a>
 
 <sub><b>TechGear</b> — application preview</sub>
