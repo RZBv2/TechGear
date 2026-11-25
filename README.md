@@ -39,12 +39,39 @@ TechGear is an e-commerce platform for discovering and purchasing new and certif
 <div align="center">
 
 <a href="https://postimg.cc/V5GPLZL3">
-  <img src="https://i.postimg.cc/KvFGfdXv/screencapture-1795622236672.png" alt="TechGear application preview" width="100%" />
+  <img src="home.png" alt="TechGear application preview" width="100%" />
 </a>
 
 <sub><b>TechGear</b> — application preview</sub>
 
 </div>
+
+## 👥 Team
+
+<table align="center">
+  <tr>
+    <td align="center" width="320">
+      <a href="https://github.com/RZBv2">
+        <img src="https://github.com/RZBv2.png?size=180" width="120" alt="Md. Razab Ali GitHub profile" />
+      </a>
+      <br />
+      <strong><a href="https://github.com/RZBv2">Md. Razab Ali</a></strong>
+      <br />
+      Backend development, security,<br />
+      SMTP-based verification, and bug fixing.
+    </td>
+    <td align="center" width="320">
+      <a href="https://github.com/zerotwo5">
+        <img src="https://github.com/zerotwo5.png?size=180" width="120" alt="Md. Tanvir Rahman Pranto GitHub profile" />
+      </a>
+      <br />
+      <strong><a href="https://github.com/zerotwo5">Md. Tanvir Rahman Pranto</a></strong>
+      <br />
+      Frontend development,<br />
+      UX/UI design, testing, and bug fixing.
+    </td>
+  </tr>
+</table>
 
 ## ✨ Highlights
 
@@ -149,6 +176,8 @@ The application validates important checkout data on the server, including produ
 - 📊 [Project presentation](Documents/TechGear.pptx)
 - 🗄️ [SQLite setup and operational notes](TechGear/SQLITE_SETUP.md)
 
+
+
 ## 🧭 Current Scope and Future Integrations
 
 **Included:** customer accounts, email verification, catalog browsing, checkout and order workflows, admin tools, and used-device buyback requests.
@@ -165,32 +194,7 @@ The application validates important checkout data on the server, including produ
 
 > Payment gateway and courier integrations should be added only with provider credentials, verified callbacks/webhooks, and appropriate security checks.
 
-## 👥 Team
 
-<table align="center">
-  <tr>
-    <td align="center" width="320">
-      <a href="https://github.com/RZBv2">
-        <img src="https://github.com/RZBv2.png?size=180" width="120" alt="Md. Razab Ali GitHub profile" />
-      </a>
-      <br />
-      <strong><a href="https://github.com/RZBv2">Md. Razab Ali</a></strong>
-      <br />
-      Backend development, security,<br />
-      SMTP-based verification, and bug fixing.
-    </td>
-    <td align="center" width="320">
-      <a href="https://github.com/zerotwo5">
-        <img src="https://github.com/zerotwo5.png?size=180" width="120" alt="Md. Tanvir Rahman Pranto GitHub profile" />
-      </a>
-      <br />
-      <strong><a href="https://github.com/zerotwo5">Md. Tanvir Rahman Pranto</a></strong>
-      <br />
-      Frontend development,<br />
-      UX/UI design, testing, and bug fixing.
-    </td>
-  </tr>
-</table>
 
 <div align="center">
 
