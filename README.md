@@ -9,47 +9,44 @@ TechGear is an e-commerce platform for discovering and purchasing new and certif
 ## Team
 
 <p align="center">
-<a href="https://github.com/RZBv2"><img src="https://github.com/RZBv2.png?size=180" width="120" alt="Md. Razab Ali GitHub profile" /></a>
+  <a href="https://github.com/RZBv2"><img src="https://github.com/RZBv2.png?size=180" width="120" alt="Md. Razab Ali GitHub profile" /></a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/zerotwo5"><img src="https://github.com/zerotwo5.png?size=180" width="120" alt="Md. Tanvir Rahman Pranto GitHub profile" /></a>
+<fieldset>
+  <legend><strong><a href="https://github.com/RZBv2">Md. Razab Ali</a></strong></legend>
+  Backend development, security, Gmail/SMTP-based account verification, and bug fixing.
+</fieldset>
 </p>
 
-[**Md. Razab Ali**](https://github.com/RZBv2) · ID: 11
-Backend development, security, Gmail/SMTP-based account verification, and bug fixing.
 
-[**Md. Tanvir Rahman Pranto**](https://github.com/zerotwo5) · ID: 05
-Frontend development, UX/UI design, testing, and bug fixing.
+<p align="center">
+  <a href="https://github.com/zerotwo5"><img src="https://github.com/zerotwo5.png?size=180" width="120" alt="Md. Tanvir Rahman Pranto GitHub profile" /></a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<fieldset>
+  <legend><strong><a href="https://github.com/zerotwo5">Md. Tanvir Rahman Pranto</a> </strong></legend>
+  Frontend development, UX/UI design, testing, and bug fixing.
+</fieldset>
+</p>
+
+
 
 ## Highlights
 
 - Product catalog with search, category browsing, filters, sorting, and product details.
-
 - New and pre-owned products, including product comparison, cart, and wishlist experiences.
-
 - Customer accounts with email verification before sign-in.
-
 - Checkout, order history, order tracking, and product reviews.
-
 - Used-device sell-request workflow.
-
 - Admin dashboard for managing products, customers, orders, and sell requests.
-
 - Server-backed SQLite persistence, server-side price and stock validation, and audit records.
-
 - Responsive interface built with React and Tailwind CSS.
 
 ## Technology
 
 - **Frontend:** React, TypeScript, Tailwind CSS
-
 - **Application framework:** TanStack Start and Vite
-
 - **Database:** SQLite using Node.js `node:sqlite`
-
 - **Validation and forms:** Zod, React Hook Form
-
 - **Email:** Nodemailer with configurable SMTP
-
 - **Authentication/security:** scrypt-derived password hashes, database-backed sessions, HttpOnly cookies, server-side authorization, and time-limited email verification codes
 
 ## Getting started
@@ -79,7 +76,7 @@ The SQLite database is stored under `TechGear/data/techgear.sqlite`. Keep this f
 
 Customer registration uses a six-digit email verification code delivered through SMTP. Configure these values in the deployment environment; do not commit real secrets or credentials to Git:
 
-```
+```dotenv
 SMTP_HOST=smtp.example.com
 SMTP_PORT=587
 SMTP_USER=your-smtp-user
@@ -99,7 +96,7 @@ A live payment gateway and courier integration are not included. Non-cash-on-del
 
 ## Project structure
 
-```
+```text
 .
 ├── Documents/       # Project report and presentation
 └── TechGear/        # Application source, assets, and setup notes
@@ -112,9 +109,7 @@ A live payment gateway and courier integration are not included. Non-cash-on-del
 ## Project documents
 
 - [Project report](Documents/TechGear.pdf)
-
 - [Project presentation](Documents/TechGear.pptx)
-
 - [SQLite setup and operational notes](TechGear/SQLITE_SETUP.md)
 
 ## Current scope and future integrations
